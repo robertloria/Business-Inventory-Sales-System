@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>MyBusiness</h2>
+
+        <nav>
+            <button onclick="showPage('dashboard')">Dashboard</button>
+            <button onclick="showPage('products')">Products</button>
+            <button onclick="showPage('inventory')">Inventory</button>
+            <button onclick="showPage('sales')">Sales</button>
+            <button onclick="showPage('history')">Sales History</button>
+        </nav>
+    </div>
+
+    <main class="main-content">
+
+        <header>
+            <h1>Business Dashboard</h1>
+            <p>Welcome to your business management system!</p>
+        </header>
+
+        <section id="dashboard" class="page">
+            <h2>Dashboard Overview</h2>
+
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Products</h3>
+                    <p id="totalProducts">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Sales</h3>
+                    <p id="totalSales">₱0.00</p>
+                </div>
+
+                <div class="card">
+                    <h3>Low Stock Items</h3>
+                    <p id="lowStock">0</p>
+                </div>
+            </div>
+        </section>
+
+        
+<section id="products" class="page hidden">
+    <h2>Product Management</h2>
+    <input
+    type="text"
+    id="searchProduct"
+    placeholder="Search products..."
+    oninput="searchProducts()"
+>
+
+    <div class="product-form">
+        <input type="text" id="productName"
+            placeholder="Product Name">
+
+        <input type="number" id="productPrice"
+            placeholder="Price" min="0" step="0.01">
+
+        <input type="number" id="productStock"
+            placeholder="Stock Quantity" min="0" step="1">
+
+        <button onclick="addProduct()">
+            Add Product
+        </button>
+    </div>
+
+    <h3>Product List</h3>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+    </div>
+</section>
+
+
+        
+<section id="inventory" class="page hidden">
+    <h2>Inventory Management</h2>
+    <p>Monitor your available stocks.</p>
+
+    <div class="inventory-summary">
+        <h3>Available Products</h3>
+        <p id="inventoryCount">0</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Status</th>
+    </tr>
+</thead>
+
+            <tbody id="inventoryList"></tbody>
+        </table>
+    </div>
+</section>
+
+
+        
+<section id="sales" class="page hidden">
+    <h2>Sales Management</h2>
+
+    <div class="sales-form">
+
+        <label for="saleProduct">Select Product</label>
+        <select id="saleProduct" onchange="calculateTotal()">
+            <option value="">Choose a product</option>
+        </select>
+
+        <label for="saleQuantity">Quantity</label>
+        <input
+            type="number"
+            id="saleQuantity"
+            placeholder="Enter quantity"
+            min="1"
+            step="1"
+            oninput="calculateTotal()"
+        >
+
+        <div class="sale-total">
+            <h3>Total Amount</h3>
+            <p id="saleTotal">₱0.00</p>
+        </div>
+
+        <button onclick="completeSale()">
+            Complete Sale
+        </button>
+
+    </div>
+
+    <h3 class="sales-heading">Recent Transactions</h3>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="salesList"></tbody>
+        </table>
+    </div>
+</section>
+
+
+       <section id="history" class="page hidden">
+    <h2>Sales History</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="historyList"></tbody>
+    </table>
+</section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
